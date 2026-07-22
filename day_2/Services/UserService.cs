@@ -7,11 +7,11 @@ namespace day_2.Services
     {
         private readonly UserDto[] users =
         {
-            new() { Id = 1, Name = "Mario", Age = 24 },
-            new() { Id = 2, Name = "Luigi", Age = 23 },
-            new() { Id = 3, Name = "Peach", Age = 22 }
+            new() { Id = 1, Name = "Bowser", Age = 30 },
+            new() { Id = 2, Name = "Mario", Age = 24 },
+            new() { Id = 3, Name = "Luigi", Age = 23 },
+            new() { Id = 4, Name = "Peach", Age = 22 },
         };
-
 
         public Task<UserDto> GetUserAsync(int id)
         {
