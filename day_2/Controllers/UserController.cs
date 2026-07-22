@@ -1,6 +1,5 @@
 ﻿using day_2.Dtos;
 using day_2.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace day_2.Controllers
@@ -10,12 +9,12 @@ namespace day_2.Controllers
     public class UserController(IUserService userService) : ControllerBase
     {
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<UserDto>> GetUser(int id)
+        [HttpGet]
+        public async Task<ActionResult<UserDto[]>> GetUser([FromQuery] int? id = null, [FromQuery] string? name = null)
         {
             try
             {
-                var user = await userService.GetUserAsync(id);
+                var user = await userService.GetUserAsync(id, name);
                 return Ok(user);
             }
             catch (KeyNotFoundException)
