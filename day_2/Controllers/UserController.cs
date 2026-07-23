@@ -10,11 +10,11 @@ namespace day_2.Controllers
     {
 
         [HttpGet]
-        public async Task<ActionResult<UserDto[]>> GetUser([FromQuery] int? id = null, [FromQuery] string? name = null)
+        public async Task<ActionResult<UserDto[]>> GetUser([FromQuery] int? id = null, [FromQuery] string? name = null, [FromQuery] int? age = null)
         {
             try
             {
-                var user = await userService.GetUserAsync(id, name);
+                var user = await userService.GetUserAsync(id, name, age);
                 return Ok(user);
             }
             catch (KeyNotFoundException)

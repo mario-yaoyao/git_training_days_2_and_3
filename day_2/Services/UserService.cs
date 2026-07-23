@@ -12,11 +12,12 @@ namespace day_2.Services
             new() { Id = 4, Name = "Peach", Age = 22 },
         };
 
-        public Task<List<UserDto>> GetUserAsync(int? id, string? name = null)
+        public Task<List<UserDto>> GetUserAsync(int? id, string? name = null, int? age = null)
         {
             var matchingUsers = users.Where(u =>
                     (id == null || u.Id == id) &&
-                    (name == null || u.Name.ToLower().Contains(name.ToLower()))
+                    (name == null || u.Name.ToLower().Contains(name.ToLower())) &&
+                    (age == null || u.Age == age)
                 ).ToList();
 
             if (matchingUsers.Count == 0)
