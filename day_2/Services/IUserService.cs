@@ -4,6 +4,6 @@ namespace day_2.Services
 {
     public interface IUserService
     {
-        public Task<List<UserDto>> GetUserAsync(int? id, int? age);
+        Task<List<UserDto>> GetUserAsync(int? id, string? name = null, int? age);
     }
 }
