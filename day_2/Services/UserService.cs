@@ -12,7 +12,7 @@ namespace day_2.Services
             new() { Id = 4, Name = "Peach", Age = 22 },
         };
 
-        public Task<List<UserDto>> GetUserAsync(int? id, string? name = null, int? age)
+        public Task<List<UserDto>> GetUserAsync(int? id, string? name = null, int? age = null)
         {
             var matchingUsers = users.Where(u =>
                     (id == null || u.Id == id) &&
