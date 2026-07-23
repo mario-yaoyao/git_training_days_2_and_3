@@ -1,5 +1,4 @@
 ﻿using day_2.Dtos;
-using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace day_2.Services
 {
@@ -13,16 +12,19 @@ namespace day_2.Services
             new() { Id = 4, Name = "Peach", Age = 22 },
         };
 
-        public Task<UserDto> GetUserAsync(int id)
+        public Task<List<UserDto>> GetUserAsync(int? id, string? name = null)
         {
-            var user = users.FirstOrDefault(u => u.Id == id);
+            var matchingUsers = users.Where(u =>
+                    (id == null || u.Id == id) &&
+                    (name == null || u.Name.ToLower().Contains(name.ToLower()))
+                ).ToList();
 
-            if (user == null)
+            if (matchingUsers.Count == 0)
             {
-                throw new KeyNotFoundException("User not found");
+                throw new KeyNotFoundException("User/s not found");
             }
 
-            return Task.FromResult(user);
+            return Task.FromResult(matchingUsers);
         }
     }
 }
